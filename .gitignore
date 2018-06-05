@@ -1,0 +1,4 @@
+api/vendor
+api/logs
+api/cache
+api/node_modules

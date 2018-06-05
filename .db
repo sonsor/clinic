@@ -1,0 +1,43 @@
+User
+	ID
+	firstName
+	lastName
+	email
+	password
+	lastLoginTime
+	role
+	status
+
+Patients
+	ID
+	firstName
+	lastName
+	email
+	cnic
+	country
+	state
+	city
+	address1
+	address2
+	phoneNo
+	cellNo
+	dateOfBirth
+
+Appointments
+	ID
+	patient
+	appointmentDate
+	attachment
+	status
+
+Percription
+	ID
+	appointment
+	description
+
+FileStorage
+	ID
+	path
+	extension
+	fileName
+	mimeType
