@@ -8,6 +8,6 @@ class Patients extends Model
 {
     public function appointments()
     {
-    	return $this->hasOne('App\Appointments');
+    	return $this->hasMany('App\Appointments');
     }
 }
