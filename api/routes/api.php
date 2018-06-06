@@ -15,47 +15,29 @@ use Illuminate\Http\Request;
 
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
+
 Route::group(['middleware' => 'auth:api'], function(){
-Route::post('details', 'UserController@details');
+
+    Route::post('details', 'UserController@details');
+
+    Route::get('/patients', 'PatientsController@list');
+
+    Route::get('/patients/{id}', 'PatientsController@get');
+
+    Route::post('/patients', 'PatientsController@create');
+
+    Route::patch('/patients/{id}', 'PatientsController@update');
+
+    // Appointments Routes
+    Route::get('/patients/{patient}/appointments', 'AppointmentController@list');
+
+    Route::get('/patients/{patient}/appointments/{id}', 'AppointmentController@get');
+
+    Route::post('/patients/{patient}/appointments', 'AppointmentController@create');
+
+    Route::patch('/patients/{patient}/appointments/{id}', 'AppointmentController@update');
+
+    Route::delete('/patients/{patient}/appointments/{id}', 'AppointmentController@remove');
+
 });
 
-Route::get('/patients', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::get('/patients{id}', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::post('/patients', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::patch('/patients/{id}', function (Request $request) {
-    return ['status' => true];
-});
-
-// Appointments Routes
-Route::get('/patients/{patient}/appointments', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::get('/patients/{patient}/appointments/{id}', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::post('/patients/{patient}/appointments', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::patch('/patients/{patient}/appointments/{id}', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::delete('/patients/{patient}/appointments/{id}', function (Request $request) {
-    return ['status' => true];
-});
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
