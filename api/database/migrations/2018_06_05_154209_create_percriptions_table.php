@@ -16,6 +16,7 @@ class CreatePercriptionsTable extends Migration
         Schema::create('percriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->longText('description');
+            $table->integer('appointments_id')->length(10);
             $table->timestamps();
         });
     }

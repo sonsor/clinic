@@ -14,7 +14,8 @@ class PatientsController extends Controller
      */
     public function index()
     {
-        //
+        $patients = Patients::all();
+        return response()->json(['data' => $patients]);
     }
 
     /**
@@ -22,20 +23,21 @@ class PatientsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
-    }
+        $validator = $request->validate([
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'email' => 'email|max:255'
+        ]);
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+        $patient = Patients::create($request->all());
+
+        $patient->save();
+        return response()->json([
+            'status' => 'success',
+            'id' => $patient->id
+        ]);
     }
 
     /**
@@ -67,9 +69,23 @@ class PatientsController extends Controller
      * @param  \App\Patients  $patients
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Patients $patients)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = $request->validate([
+            'firstName' => 'required|max:255',
+            'lastName' => 'required|max:255',
+            'email' => 'email|max:255'
+        ]);
+
+        $patient = Patients::findOrFail($id);
+
+        $patient->fill($request->all());
+
+        $patient->save();
+        return response()->json([
+            'status' => 'success',
+            'id' => $patient->id
+        ]);
     }
 
     /**

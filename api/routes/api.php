@@ -16,11 +16,12 @@ use Illuminate\Http\Request;
 Route::post('login', 'UserController@login');
 Route::post('register', 'UserController@register');
 
+
 Route::group(['middleware' => 'auth:api'], function(){
 
     Route::post('details', 'UserController@details');
 
-    Route::get('/patients', 'PatientsController@list');
+    Route::get('/patients', 'PatientsController@index');
 
     Route::get('/patients/{id}', 'PatientsController@get');
 

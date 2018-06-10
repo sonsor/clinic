@@ -17,6 +17,7 @@ class CreateAppointmentsTable extends Migration
             $table->increments('id');
             $table->dateTime('appointmentDate');
             $table->enum('status', ['booked', 'cancelled', 'atteneded']);
+            $table->integer('patients_id')->length(10);
             $table->timestamps();
         });
     }
